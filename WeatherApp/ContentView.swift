@@ -82,42 +82,48 @@ struct BackgroundView: View {
     var isNight: Bool
     
     var body: some View {
-        LinearGradient(gradient: Gradient(colors: [isNight ? .black : .blue,
-                                                   isNight ? .gray : Color("specialBlue")]),
-                       startPoint: .topLeading,
-                       endPoint: .bottomTrailing)
-        .ignoresSafeArea()
+        //       LinearGradient(gradient: Gradient(colors: [isNight ? .black : .blue,
+        //                                                   isNight ? .gray : Color("specialBlue")]),
+        //                      startPoint: .topLeading,
+        //                       endPoint: .bottomTrailing)
+        //        .ignoresSafeArea()
+        
+        ContainerRelativeShape()
+            .fill(isNight ? Color.black.gradient : Color.blue.gradient)
+            .ignoresSafeArea()
+        
     }
 }
-
-struct CityTextView: View {
-    var cityName: String
-    var body: some View {
-        Text(cityName)
-            .font(.system(size: 32, weight: .medium, design: .default))
-            .foregroundColor(.white)
-            .padding()
-    }
-}
-
-struct WeatherStatusView: View {
-    var imageName: String
-    var temperature: Int
     
-    
-    var body: some View {
-        VStack(spacing: 8) {
-            Image(systemName: imageName)
-                .symbolRenderingMode(.multicolor)
-                .resizable()
-                .aspectRatio(contentMode: .fit)
-                .frame(width: 180, height: 180)
-            Text("\(temperature)°C")
-                .font(.system(size: 70, weight: .medium))
+    struct CityTextView: View {
+        var cityName: String
+        var body: some View {
+            Text(cityName)
+                .font(.system(size: 32, weight: .medium, design: .default))
                 .foregroundColor(.white)
+                .padding()
         }
-        .padding(.bottom, 40)
     }
-}
-
+    
+    struct WeatherStatusView: View {
+        var imageName: String
+        var temperature: Int
+        
+        
+        var body: some View {
+            VStack(spacing: 8) {
+                Image(systemName: imageName)
+                    .symbolRenderingMode(.multicolor)
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 180, height: 180)
+                Text("\(temperature)°C")
+                    .font(.system(size: 70, weight: .medium))
+                    .foregroundColor(.white)
+            }
+            .padding(.bottom, 40)
+        }
+    }
+    
+    
 
